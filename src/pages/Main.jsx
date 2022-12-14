@@ -29,15 +29,18 @@ const Main = () => {
         >
           {currentBlogs === undefined ? (
             <img src={{}} alt="loading" />
-          ) : currentBlogs ? (
+          ) :( currentBlogs.length!==0 ? (
+            
             currentBlogs?.map((item, id) => (
               <Grid key={id} >
                 <RecipeReviewCard values={item}/>
               </Grid>
             ))
+            
           ) : (
-            <RecipeReviewCard/>
-          )}
+            
+            <h2>Gösterilecek veri yok.</h2>
+          ))}
 
         </Grid>
       

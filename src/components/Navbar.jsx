@@ -43,8 +43,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
+            component="button"
+            onClick={()=>{navigate("/")}}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -66,8 +66,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component="button"
+            onClick={()=>{navigate("/")}}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -86,8 +86,8 @@ function ResponsiveAppBar() {
           </Box>
           <Typography variant="h6"
             noWrap
-            component="a"
-            href=""
+            component="button"
+            onClick={()=>{navigate("/profile")}}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

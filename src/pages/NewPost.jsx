@@ -52,7 +52,8 @@ const classes = {
     get_comment_count: 0,
     get_like_count: 0,
     image: "",
-    published_date: Date.now(),
+    published_date: `${new Date().toLocaleTimeString()}  ${new Date().toLocaleDateString()}`,
+    author_image: currentUser.photoURL,
   });
   const { addBlog } = useBlog();
   const navigate = useNavigate();
