@@ -1,12 +1,12 @@
 import React from 'react'
 import RecipeReviewCard from '../components/BlogCard'
 import { useParams } from 'react-router-dom';
-import {getOneBlog, useBlog} from "../contexts/BlogContext"
+import { useBlog} from "../contexts/BlogContext"
 import { Grid } from '@mui/material';
 
 const Details = () => {
   let { id } = useParams();
-  const{currentBlogs, getOneBlog}=useBlog();
+  const{ getOneBlog}=useBlog();
   console.log(id)
   const item= getOneBlog(id)? getOneBlog(id)[0] : "";
   console.log(item);

@@ -7,7 +7,7 @@ import Main from '../pages/Main'
 import NewPost from '../pages/NewPost'
 import Profile from '../pages/Profile'
 import Register from '../pages/Register'
-import UpdateBlog from '../pages/UpdateBlog'
+import UpdatePost from '../pages/UpdatePost'
 import PrivateRouter from './PrivateRouter'
 
 const AppRouter = () => {
@@ -21,7 +21,7 @@ const AppRouter = () => {
         <Route element={<PrivateRouter />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/new-post" element={<NewPost />} />
-          <Route path="/update-blog/:id" element={<UpdateBlog />} />
+          <Route path="/update-blog/:id" element={<UpdatePost />} />
           <Route path="/detail/:id" element={<Details />} />
         </Route>
       </Routes>

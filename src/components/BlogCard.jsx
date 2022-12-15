@@ -14,6 +14,12 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useAuth } from '../contexts/AuthContextProvider';
+import { useBlog } from '../contexts/BlogContext';
+import { toastWarnNotify } from '../helpers/ToastNotify';
+import EditIcon from '@mui/icons-material/Edit';
+import DetailsIcon from '@mui/icons-material/Details';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,10 +34,13 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard(values) {
   const navigate = useNavigate();
+  const {currentUser} = useAuth();
+  const {deleteOneBlog} = useBlog();
   const [expanded, setExpanded] = React.useState(false);
-console.log(values.values)
+  const [liked, setliked]= React.useState(false);
+
+  
 const {id,author,content,get_comment_count,get_like_count,image,published_date,title,author_image}=values.values;
-console.log(values.values.id);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -44,10 +53,30 @@ console.log(values.values.id);
             :
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
+        action={<>
+        <IconButton onClick={()=>{
+          if (author===currentUser.email) {
+            navigate(`/update-blog/${id}`)
+          }
+          else{
+            toastWarnNotify("You can only update your own posts.")
+          }
+          
+          }} aria-label="settings">
+            <EditIcon />
+            
           </IconButton>
+          <IconButton onClick={()=>{
+            if(author===currentUser.email){
+              console.log("sa")
+              deleteOneBlog(id);
+            }else{
+              toastWarnNotify("You can only delete your own posts.");
+              navigate("/");
+            }
+          }}><DeleteIcon/></IconButton>
+          </>
+          
         }
         title={title}
         subheader={author}
@@ -64,21 +93,24 @@ console.log(values.values.id);
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+        <IconButton onClick={()=>setliked(!liked)} aria-label="add to favorites">
+          {liked? <FavoriteIcon sx={{color:"red"}}/>:<FavoriteIcon />}
         </IconButton>
-        <IconButton onClick={()=>navigate(`/detail/${id}`)} aria-label="share">
-          <ShareIcon  />
+        <IconButton onClick={()=>
+          
+            navigate(`/detail/${id}`)}
+           aria-label="share">
+          <DetailsIcon/>
         </IconButton>
-        <Typography variant='subtitle2'>{published_date}</Typography>
-        <ExpandMore
+        <Typography variant='subtitle2'>Date: {published_date}</Typography>
+        {/* <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </ExpandMore>
+        </ExpandMore> */}
       </CardActions>
      
     </Card>
