@@ -110,6 +110,7 @@ function ResponsiveAppBar() {
 
               </IconButton>
             </Tooltip>
+            {currentUser? 
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -125,35 +126,63 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-            >
+            ><MenuItem  onClick={()=>{
+              navigate("/")
+              handleCloseUserMenu()}}>
+                <Typography textAlign="center" >Home</Typography>
+              </MenuItem>  
              <MenuItem  onClick={()=>{
-                navigate("/new-post")
-                handleCloseUserMenu()}}>
-                  <Typography textAlign="center" >NewPost</Typography>
-                </MenuItem>
+              navigate("/new-post")
+              handleCloseUserMenu()}}>
+                <Typography textAlign="center" >NewPost</Typography>
+              </MenuItem>
               <MenuItem  onClick={()=>{
                 navigate("/profile")
                 handleCloseUserMenu()}}>
                   <Typography textAlign="center" >Profile</Typography>
                 </MenuItem>
                 <MenuItem  onClick={()=>{
-                navigate("/login")
-                handleCloseUserMenu()}}>
-                  <Typography textAlign="center" >Login</Typography>
-                </MenuItem>
-                <MenuItem  onClick={()=>{
-                navigate("/register")
-                handleCloseUserMenu()}}>
-                  <Typography textAlign="center" >Register</Typography>
-                </MenuItem>
-                <MenuItem  onClick={()=>{
-                logOut();
-                navigate("/login")
-                handleCloseUserMenu()}}>
-                  <Typography textAlign="center" >Logout</Typography>
-                </MenuItem>
-                
+          logOut();
+          navigate("/login")
+          handleCloseUserMenu()}}>
+            <Typography textAlign="center" >Logout</Typography>
+          </MenuItem>
+
             </Menu>
+            : <Menu
+            sx={{ mt: '45px' }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >   
+          <MenuItem  onClick={()=>{
+            navigate("/")
+            handleCloseUserMenu()}}>
+              <Typography textAlign="center" >Home</Typography>
+            </MenuItem>
+          <MenuItem  onClick={()=>{
+            navigate("/login")
+            handleCloseUserMenu()}}>
+              <Typography textAlign="center" >Login</Typography>
+            </MenuItem>
+            <MenuItem  onClick={()=>{
+            navigate("/register")
+            handleCloseUserMenu()}}>
+              <Typography textAlign="center" >Register</Typography>
+            </MenuItem>
+
+          </Menu>}
+            
           </Box>
         </Toolbar>
       </Container>
