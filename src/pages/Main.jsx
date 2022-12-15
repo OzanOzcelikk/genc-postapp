@@ -17,8 +17,8 @@ const Main = () => {
     <Box  >
       <Typography sx={{fontFamily: "Girassol",
     textAlign: "center",
-    color: "red",}}  variant="h3" noWrap>
-        ──── BLOGS ────
+    color: "green",}}  variant="h3" noWrap>
+        ──── Posts ────
       </Typography>
       
         <Grid
